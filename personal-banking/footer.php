@@ -24,14 +24,16 @@
 <!-- JavaScript -->
 <script defer>
     let el = document.getElementById("flag-logo")
-    fetch("http://www.geoplugin.net/json.gp").then((response) => {
-        return response.json()
-    }).then((data) => {
-        let country = data.geoplugin_countryCode
-        el.innerHTML = `<img src="https://flagcdn.com/24x18/${country.toLowerCase()}.png" alt="${country}" class="img-fluid">`
-    }).catch((error) => {
-        console.error("Error fetching country data:", error)
-    })
+    if (el) {
+        fetch("http://www.geoplugin.net/json.gp").then((response) => {
+            return response.json()
+        }).then((data) => {
+            let country = data.geoplugin_countryCode
+            el.innerHTML = `<img src="https://flagcdn.com/24x18/${country.toLowerCase()}.png" alt="${country}" class="img-fluid">`
+        }).catch((error) => {
+            console.error("Error fetching country data:", error)
+        })
+    }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/country.js"></script>

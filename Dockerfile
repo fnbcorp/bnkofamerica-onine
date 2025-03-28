@@ -33,7 +33,7 @@ RUN /usr/local/sbin/setup-ngxblocker -x -e conf
 
 COPY ./bots.d/blacklist-user-agents.conf /etc/nginx/bots.d/blacklist-user-agents.conf
 COPY ./bots.d/blacklist-ips.conf /etc/nginx/bots.d/blacklist-ips.conf
-COPY ./bots.d/blockbots.conf /etc/nginx/bots.d/blockbots.conf
+# COPY ./bots.d/blockbots.conf /etc/nginx/bots.d/blockbots.conf
 
 RUN nginx -t
 
