@@ -1,14 +1,19 @@
 <?php
 // !isset($_ENV["PHP_ENV"])
 // if () {
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 // }
-$servername = "131.153.148.82";
-$username = "arrivelo_fnbcorp";
-$dbname = "arrivelo_fnbcorp";
-$password = "admin@00154abS/";
+// $servername = "131.153.148.82";
+// $username = "arrivelo_fnbcorp";
+// $dbname = "arrivelo_fnbcorp";
+// $password = "admin@00154abS/";
+
+$servername = "b4j2h3z2ug93gzgsiof2-mysql.services.clever-cloud.com";
+$username = "umqxqvcvjyxbyisb";
+$dbname = "b4j2h3z2ug93gzgsiof2";
+$password = "NAuganoaeaNLwwqpIGpZ";
 
 
 // $servername = "bigswfmt9xdwwxeosjaa-mysql.services.clever-cloud.com";
