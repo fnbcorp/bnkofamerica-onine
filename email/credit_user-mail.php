@@ -1,40 +1,76 @@
-   <?php
-    include("../scripts/functions.php");
-    require ('../includes/PHPMailer.php');
-    require ('../includes/SMTP.php');
-    require ('../includes/Exception.php');       
-    //defining name spacess
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
-    $j = $_SESSION['creditUserDetails'];
-    if($j[0] == ""){
-    	echo"<script>window.location.href='../admin/fund_user'</script>";
-    }
-    $id = $j[0]; $amount = $j[1]; $memo = $j[2]; $frequency= $j[3]; $scope= $j[4]; $emailNotify= $j[5]; $firstname= $j[6]; $lastname= $j[7]; $middlename= $j[8]; $email= $j[9]; $accountnumber= $j[10]; $accountbalance = $j[11];   
-    for ($i=0; $i < $frequency; $i++) { 
-		     $query = $conn->query("SELECT * FROM users WHERE id = '$id'");
-            $row = mysqli_fetch_array($query);
-            $accountbalance = $row['accountbalance']; 
-		     $transferToken = randomString(64);
-            $ref = randomString(9);
-            $dd = date("my");
-            $dc = substr($sitename, 0, 3);
-            $refNumber = strtoupper("$dc/$ref-$dd");
-            $otp = randomNumber(6);
-            $dated = date("d M Y, g:i a");
-            $acctBal = $accountbalance + ($amount);
-            $queryForTransfer = $conn->query("INSERT INTO transactions (scope, type, otp, refNumber, dated, amount, accountbalance, userid, description, token) VALUES ('$scope', 'Credit', '$otp', '$refNumber', '$dated', '$amount', '$acctBal', '$id', '$memo', '$transferToken')");
-                $queryForBalUpdate = $conn->query("UPDATE users SET accountbalance = '$acctBal' WHERE id = '$id'");
+<?php
+include("../scripts/functions.php");
+require('../includes/PHPMailer.php');
+require('../includes/SMTP.php');
+require('../includes/Exception.php');
+//defining name spacess
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+$j = $_SESSION['creditUserDetails'];
+if ($j[0] == "") {
+  echo "<script>window.location.href='../admin/fund_user'</script>";
+}
+$id = $j[0];
+$amount = $j[1];
+$memo = $j[2];
+$frequency = $j[3];
+$scope = $j[4];
+$emailNotify = $j[5];
+$firstname = $j[6];
+$lastname = $j[7];
+$middlename = $j[8];
+$email = $j[9];
+$accountnumber = $j[10];
+$accountbalance = $j[11];
 
-     if ($emailNotify == "Yes") {
-     $fullname = "$firstname $middlename $lastname";	
-     $mail = new PHPMailer;
-  $mail->isSMTP();
+function getBank()
+{
+  global $conn;
+
+  $id = random_int(1, 1050);
+  $query = $conn->query(<<<SQL
+  SELECT name
+  FROM usbank WHERE id = $id;
+  SQL);
+  $row = mysqli_fetch_array($query);
+  $bankname = $row;
+  return $bankname['name'];
+}
+for ($i = 0; $i < $frequency; $i++) {
+  $query = $conn->query("SELECT * FROM users WHERE id = '$id'");
+  $row = mysqli_fetch_array($query);
+  $accountbalance = $row['accountbalance'];
+  $transferToken = randomString(64);
+  $ref = randomString(9);
+  $dd = date("my");
+  $dc = substr($sitename, 0, 3);
+  $refNumber = strtoupper("$dc/$ref-$dd");
+  $otp = randomNumber(6);
+  $dated = date("d M Y, g:i a");
+  $acctBal = $accountbalance + ($amount);
+
+  $routineNumber = random_int(1000000000, 9999999999);
+  $bankname = getBank();
+  $accountholder = "$firstname $middlename $lastname";
+  $country = $row['country'];
+  $state = $row['state'];
+  $city = $row['city'];
+
+
+
+  $queryForTransfer = $conn->query("INSERT INTO transactions (routineNumber, bankname, swiftcode, scope, type, otp, refNumber, dated, amount, accountbalance, userid, description, token, accountnumber, accountholder, country, state, city, iban) VALUES ($routineNumber, '$bankname', '', '$scope', 'Credit', '$otp', '$refNumber', '$dated', '$amount', '$acctBal', '$id', '$memo', '$transferToken', '$accountnumber','$accountholder', '$country', '$state', '$city', '')");
+  $queryForBalUpdate = $conn->query("UPDATE users SET accountbalance = '$acctBal' WHERE id = '$id'");
+
+  $SendMail = false;
+  if ($SendMail) {
+    $fullname = "$firstname $middlename $lastname";
+    $mail = new PHPMailer;
+    $mail->isSMTP();
     $mail->Host = $smtp_host;
     $mail->SMTPAuth = true;
     $mail->CharSet = "UTF-8";
-    $mail->Username = $smtp_username; 
+    $mail->Username = $smtp_username;
     $mail->Password = $smtp_password;
     $mail->SMTPSecure = $smtp_auth;
     $mail->Port = $smtp_port;
@@ -493,8 +529,8 @@
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-               <a href="'.$site_url.'" class="">
-                <img src="'.$emaillogo.'" class="email-masthead_logo">
+               <a href="' . $site_url . '" class="">
+                <img src="' . $emaillogo . '" class="email-masthead_logo">
               </a>
               </td>
             </tr>
@@ -513,7 +549,7 @@
                   <tr>
                     <td class="content-cell">
                       <div class="f-fallback">
-                      <h2>Dear '.$fullname.',</h2>
+                      <h2>Dear ' . $fullname . ',</h2>
                         <p>Your account have been Credited.</p>
                         <!-- Action -->
                         <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -524,7 +560,7 @@
                                   <td align="center">
                                    <center>
                                    <h2 style=" text-align:center;"> With</h2>
-                                   <h1 style=" text-align:center;"> '.$money.' '.$amount.'</h1>
+                                   <h1 style=" text-align:center;"> ' . $money . ' ' . $amount . '</h1>
                                    </center>
                                   </td>
                                 </tr>
@@ -533,17 +569,17 @@
                           </tr>
                         </table>
                         <p><b>Details of the transaction are shown below;</b></p>
-                             <b>Account Number: '.$accountnumber.'</b><br>
-                            <b>Account Name: '.$fullname.'</b><br>
-                             <b>Description: '.$memo.'</b><br>
-                             <b>Total Amount: '.$money.' '.$amount.'</b><br>
-                             <b>Date: '.date("d M Y, H:i a").'</b><br>
-                             <b>Available Balance: '.$money.' '.$acctBal.'</b>
+                             <b>Account Number: ' . $accountnumber . '</b><br>
+                            <b>Account Name: ' . $fullname . '</b><br>
+                             <b>Description: ' . $memo . '</b><br>
+                             <b>Total Amount: ' . $money . ' ' . $amount . '</b><br>
+                             <b>Date: ' . date("d M Y, H:i a") . '</b><br>
+                             <b>Available Balance: ' . $money . ' ' . $acctBal . '</b>
                         <!-- Sub copy -->
                         <table class="body-sub" role="presentation">
                           <tr>
                             <td>
-                              <p class="f-fallback sub">DISCLAIMER: this message was automatically generated via '.$shortname.'  secured online channel, please do not reply this message. all
+                              <p class="f-fallback sub">DISCLAIMER: this message was automatically generated via ' . $shortname . '  secured online channel, please do not reply this message. all
                                   correspondent should be address to customer Services.</p>
                             </td>
                           </tr>
@@ -559,10 +595,10 @@
                 <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                   <tr>
                     <td class="content-cell" align="center">
-                      <p class="f-fallback sub align-center">&copy; '. date("Y").' '.$sitename.' All rights reserved.</p>
+                      <p class="f-fallback sub align-center">&copy; ' . date("Y") . ' ' . $sitename . ' All rights reserved.</p>
                       <p class="f-fallback sub align-center">
-                        '.$shortname.', LLC
-                        <br>'.$siteaddress.'
+                        ' . $shortname . ', LLC
+                        <br>' . $siteaddress . '
                       </p>
                     </td>
                   </tr>
@@ -575,21 +611,17 @@
     </table>
   </body>
 </html>';
-    if(!$mail->Send())
-    {
-    	unset($_SESSION['creditUserDetails']);
-    echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";
+    if (!$mail->Send()) {
+      unset($_SESSION['creditUserDetails']);
+      echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";
+    } else {
+      unset($_SESSION['creditUserDetails']);
+      echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";
     }
-    else
-    {
-    	unset($_SESSION['creditUserDetails']);
-     echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";   	
-    }  
-   }
-     else{
-     	unset($_SESSION['creditUserDetails']);
-        echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";
-      } 
-   
+  } else {
+    unset($_SESSION['creditUserDetails']);
+    echo "<script>window.location.href='../admin/user_profile?id=$id';</script>";
+  }
+
 }
 ?>
