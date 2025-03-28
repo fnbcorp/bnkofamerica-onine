@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <div class="nk-content">
-    <?php echo $stockrate; ?>
+    <?php //echo $stockrate; ?>
     <?php if (empty($_GET['action'])) {
     } else {
         unset($_SESSION['transaction_session']);
@@ -249,16 +249,17 @@ include("header.php");
                                                 <!-- </center> -->
                                             </div>
                             </form>
-                            <script type="text/javascript" defer>
-                                $(document).ready(function () {
-                                    console.log("ready!");
+                            <script type="text/javascript">
+                                // $(document).ready(function () {
+                                document.addEventListener("DOMContentLoaded", function () {
                                     $("#accountnumber").change(function () {
-                                        var accountnumber = $("#accountnumber").val();
+                                        // console.log("ready!", $(this).val());
+                                        // var accountnumber = $("#accountnumber").val();
                                         $.ajax({
                                             type: "post",
                                             url: "../scripts/user_account_name.php",
                                             data: {
-                                                "accountnumber": accountnumber
+                                                "accountnumber": $(this).val()
                                             },
                                             success: function (data) {
                                                 $("#accountholder").val(data);
@@ -266,6 +267,7 @@ include("header.php");
                                         });
                                     });
                                 });
+                                // });
                             </script>
 
                         <?php } ?>

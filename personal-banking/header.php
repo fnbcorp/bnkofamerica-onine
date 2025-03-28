@@ -21,41 +21,44 @@ include("../scripts/userdata.php");
     <link id="skin-default" rel="stylesheet" href="../assets/css/theme.css?ver=2.4.0">
     <link rel="stylesheet" type="text/css" href="../assets/css/libs/fontawesome-icons.css">
     <link href="../css/toastr.css" rel="stylesheet" />
+
+    <style>
+        .goog-te-gadget-simple {
+            border: none;
+        }
+
+        .goog-te-gadget-simple a {
+            color: #000;
+        }
+    </style>
+    <style type="text/css">
+        .btn-primary {
+            background-color: #033d75;
+        }
+
+        .btn-secondary {
+            background-color: #d13636;
+        }
+
+        .btn-secondary:hover {
+            opacity: 0.6;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.6;
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://www.jqueryscript.net/demo/jQuery-International-Telephone-Input-With-Flags-Dial-Codes/build/css/intlTelInput.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer async></script> -->
 </head>
-<link rel="stylesheet"
-    href="https://www.jqueryscript.net/demo/jQuery-International-Telephone-Input-With-Flags-Dial-Codes/build/css/intlTelInput.css">
 <!-- <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
 }
 </script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-<style>
-    .goog-te-gadget-simple {
-        border: none;
-    }
 
-    .goog-te-gadget-simple a {
-        color: #000;
-    }
-</style>
-<style type="text/css">
-    .btn-primary {
-        background-color: #033d75;
-    }
-
-    .btn-secondary {
-        background-color: #d13636;
-    }
-
-    .btn-secondary:hover {
-        opacity: 0.6;
-    }
-
-    .btn-primary:hover {
-        opacity: 0.6;
-    }
-</style>
 
 <body class="nk-body npc-crypto bg-white has-sidebar ">
     <div class="nk-app-root">
@@ -90,7 +93,8 @@ function googleTranslateElementInit() {
                                             <small class="currency currency-btc"><?php echo "$usercurrency"; ?></small>
                                         </div>
                                         <div class="user-balance-alt"><?php echo number_format($accountbalance); ?>
-                                            <span class="currency currency-btc"><?php echo $money ?></span></div>
+                                            <span class="currency currency-btc"><?php echo $money ?></span>
+                                        </div>
                                     </div>
                                     <a href="#" class="btn btn-white btn-icon btn-light"><em
                                             class="icon ni ni-line-chart"></em></a>
@@ -102,12 +106,11 @@ function googleTranslateElementInit() {
                                         </div>
                                         <div class="user-account-value">
 
-                                            <span
-                                                class="text-success ml-2"><?php if ($accountbalance > 0) {
-                                                    echo "66.12%";
-                                                } else {
-                                                    echo "0.0%";
-                                                } ?>
+                                            <span class="text-success ml-2"><?php if ($accountbalance > 0) {
+                                                echo "66.12%";
+                                            } else {
+                                                echo "0.0%";
+                                            } ?>
                                                 <em class="icon ni ni-arrow-long-up"></em></span>
                                         </div>
                                     </li>
@@ -116,12 +119,11 @@ function googleTranslateElementInit() {
                                             <span class="sub-text">Debits</span>
                                         </div>
                                         <div class="user-account-value">
-                                            <span
-                                                class="text-danger ml-2"><?php if ($accountbalance > 0) {
-                                                    echo "24.18%";
-                                                } else {
-                                                    echo "0.0%";
-                                                } ?>
+                                            <span class="text-danger ml-2"><?php if ($accountbalance > 0) {
+                                                echo "24.18%";
+                                            } else {
+                                                echo "0.0%";
+                                            } ?>
                                                 <em class="icon ni ni-arrow-long-down"></em></span>
                                         </div>
                                     </li>
@@ -174,12 +176,11 @@ function googleTranslateElementInit() {
                                             </div>
                                             <div class="user-account-value">
 
-                                                <span
-                                                    class="text-success ml-2"><?php if ($accountbalance > 0) {
-                                                        echo "66.12%";
-                                                    } else {
-                                                        echo "0.0%";
-                                                    } ?>
+                                                <span class="text-success ml-2"><?php if ($accountbalance > 0) {
+                                                    echo "66.12%";
+                                                } else {
+                                                    echo "0.0%";
+                                                } ?>
                                                     <em class="icon ni ni-arrow-long-up"></em></span>
                                             </div>
                                         </li>
@@ -189,13 +190,11 @@ function googleTranslateElementInit() {
                                             </div>
                                             <div class="user-account-value">
 
-                                                <span
-                                                    class="text-danger ml-2"><?php if ($accountbalance > 0) {
-                                                        echo "24.18%";
-                                                    } else {
-                                                        echo "0.0%";
-                                                    } ?><em
-                                                        class="icon ni ni-arrow-long-up"></em></span>
+                                                <span class="text-danger ml-2"><?php if ($accountbalance > 0) {
+                                                    echo "24.18%";
+                                                } else {
+                                                    echo "0.0%";
+                                                } ?><em class="icon ni ni-arrow-long-up"></em></span>
                                             </div>
                                         </li>
                                     </ul>

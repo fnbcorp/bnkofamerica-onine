@@ -1,31 +1,31 @@
 <?php
-    require ('../includes/PHPMailer.php');
-    require ('../includes/SMTP.php');
-    require ('../includes/Exception.php');         
+require('../includes/PHPMailer.php');
+require('../includes/SMTP.php');
+require('../includes/Exception.php');
 //defining name spacess
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    use PHPMailer\PHPMailer\SMTP;
-    include("../scripts/functions.php");
-    include("../scripts/userdata.php");
-    $otp = randomNumber(6);
-    $amount = $_SESSION['amount'];
-    $_SESSION["otp"] = $otp;
-    $mail = new PHPMailer;
-  $mail->isSMTP();
-    $mail->Host = $smtp_host;
-    $mail->SMTPAuth = true;
-    $mail->CharSet = "UTF-8";
-    $mail->Username = $smtp_username; 
-    $mail->Password = $smtp_password;
-    $mail->SMTPSecure = $smtp_auth;
-    $mail->Port = $smtp_port;
-    $mail->setFrom($smtp_username, $display_name);
-    $mail->addReplyTo($smtp_username, $display_name);
-    $mail->addAddress($email);
-    $mail->Subject = "Confirm transaction";
-    $mail->isHTML(true);
-    $mail->Body = '
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+include("../scripts/functions.php");
+include("../scripts/userdata.php");
+$otp = randomNumber(6);
+$amount = $_SESSION['amount'];
+$_SESSION["otp"] = $otp;
+$mail = new PHPMailer;
+$mail->isSMTP();
+$mail->Host = $smtp_host;
+$mail->SMTPAuth = true;
+$mail->CharSet = "UTF-8";
+$mail->Username = $smtp_username;
+$mail->Password = $smtp_password;
+$mail->SMTPSecure = $smtp_auth;
+$mail->Port = $smtp_port;
+$mail->setFrom($smtp_username, $display_name);
+$mail->addReplyTo($smtp_username, $display_name);
+$mail->addAddress($email);
+$mail->Subject = "Confirm transaction";
+$mail->isHTML(true);
+$mail->Body = <<<HTML
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -476,8 +476,8 @@
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-               <a href="'.$site_url.'" class="">
-                <img src="'.$emaillogo.'" class="email-masthead_logo">
+               <a href="' . $site_url . '" class="">
+                <img src="' . $emaillogo . '" class="email-masthead_logo">
               </a>
               </td>
             </tr>
@@ -496,8 +496,8 @@
                   <tr>
                     <td class="content-cell">
                       <div class="f-fallback">
-                      <h2>Dear '.$fullname.',</h2>
-                        <p>You recently initiated a transfer of '.$money.' '.$amount.' from your '.$shortname.' '.$accounttype.' via our online banking channel.</p>
+                      <h2>Dear ' . $fullname . ',</h2>
+                        <p>You recently initiated a transfer of ' . $money . ' ' . $amount . ' from your ' . $shortname . ' ' . $accounttype . ' via our online banking channel.</p>
 
                         <p>If this was legitimate activity from you and were expecting this email, consider using the code below to complete your transaction.</p>
                         <!-- Action -->
@@ -508,7 +508,7 @@
                                 <tr>
                                   <td align="center">
                                    <center>
-                              <h1 style="letter-spacing:20px; text-align:center;">'.$otp.'</h1>
+                              <h1 style="letter-spacing:20px; text-align:center;">' . $otp . '</h1>
                                    </center>
                                   </td>
                                 </tr>
@@ -516,14 +516,14 @@
                             </td>
                           </tr>
                         </table>
-                        <p>If you do not use '.$sitename.' or did not attempted to carry out a transaction via your '.$shortname.' internet banking channel, please ignore this email or <a href="'.$siteemail.'">contact support</a> if you have questions.</p>
+                        <p>If you do not use ' . $sitename . ' or did not attempted to carry out a transaction via your ' . $shortname . ' internet banking channel, please ignore this email or <a href="' . $siteemail . '">contact support</a> if you have questions.</p>
                         <hr>
                          
                         <!-- Sub copy -->
                         <table class="body-sub" role="presentation">
                           <tr>
                             <td>
-                              <p class="f-fallback sub">DISCLAIMER: this message was automatically generated via '.$shortname.'  secured online channel, please do not reply this message. all
+                              <p class="f-fallback sub">DISCLAIMER: this message was automatically generated via ' . $shortname . '  secured online channel, please do not reply this message. all
                                   correspondent should be address to customer Services.</p>
                             </td>
                           </tr>
@@ -539,10 +539,10 @@
                 <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                   <tr>
                     <td class="content-cell" align="center">
-                      <p class="f-fallback sub align-center">&copy; '. date("Y").' '.$sitename.' All rights reserved.</p>
+                      <p class="f-fallback sub align-center">&copy; ' . date("Y") . ' ' . $sitename . ' All rights reserved.</p>
                       <p class="f-fallback sub align-center">
-                        '.$shortname.', LLC
-                        <br>'.$siteaddress.'
+                        ' . $shortname . ', LLC
+                        <br>' . $siteaddress . '
                       </p>
                     </td>
                   </tr>
@@ -554,33 +554,42 @@
       </tr>
     </table>
   </body>
-</html>';
-    if(!$mail->Send())
-    {
-            $bankname =  $_SESSION["bankname"];
-            $routineNumber = $_SESSION["routineNumber"];;
-            $accountnumberB = $_SESSION["accountnumberB"];
-            $transferToken = $_SESSION["transaction_session"];
-            $accountholder = $_SESSION["accountholder"];
-            $description = $_SESSION['description'];
-            $amount = $_SESSION['amount'];
-            $ref = randomString(9);
-            $dd = date("my");
-            $dc = substr($sitename, 0, 3);
-            $refNumber = strtoupper("$dc/$ref-$dd");
-            $otp = $_SESSION["otp"];
-            $dated = date("d M Y, g:i a");
-            $acctBal = $accountbalance - ($_SESSION["amount"]);
-            $queryForTransfer = $conn->query("INSERT INTO transactions (scope, type, bankname, routineNumber, accountnumber, accountholder, otp, refNumber, dated, amount, accountbalance, userid, description, token) VALUES ('Local Transfer', 'Debit', '$bankname', '$routineNumber', '$accountnumberB', '$accountholder', '$otp', '$refNumber', '$dated', '$amount', '$acctBal', '$userid', '$description', '$transferToken')");
-                $queryForBalUpdate = $conn->query("UPDATE users SET accountbalance = '$acctBal' WHERE id = '$userid'");
-    echo "<script>window.location.href='../email/debit-alert-mail?transferToken=".$_SESSION["transaction_session"]."';</script>";
-     }
-     else
-     {
-      sleep(5);
-    echo "<script>window.location.href='../personal-banking/confirm-transaction?transferToken=".$_SESSION["transaction_session"]."';</script>";   
- 
-    }
+</html>
+HTML;
+if (!$mail->Send()) {
+  $bankname = $_SESSION["bankname"];
+  $routineNumber = $_SESSION["routineNumber"];
+  ;
+  $accountnumberB = $_SESSION["accountnumberB"];
+  $transferToken = $_SESSION["transaction_session"];
+  $accountholder = $_SESSION["accountholder"];
+  $description = $_SESSION['description'];
+  $amount = $_SESSION['amount'];
+  $ref = randomString(9);
+  $dd = date("my");
+  $dc = substr($sitename, 0, 3);
+  $refNumber = strtoupper("$dc/$ref-$dd");
+  $otp = $_SESSION["otp"];
+  $dated = date("d M Y, g:i a");
+  $acctBal = $accountbalance - ($_SESSION["amount"]);
 
 
-?>    
+  $queryForReciever = $conn->query("SELECT * FROM users WHERE accountnumber = '$accountnumberB'");
+
+  while ($row = mysqli_fetch_array($queryForReciever)) {
+    $country = $row['country'];
+    $state = $row['state'];
+    $city = $row['city'];
+  }
+
+  $queryForTransfer = $conn->query("INSERT INTO transactions (swiftcode,scope, type, bankname, routineNumber, accountnumber, accountholder, otp, refNumber, dated, amount, accountbalance, userid, description, token, country, state, city, iban) VALUES ('', 'Local Transfer', 'Debit', '$bankname', '$routineNumber', '$accountnumberB', '$accountholder', '$otp', '$refNumber', '$dated', '$amount', '$acctBal', '$userid', '$description', '$transferToken', '$country', '$state', '$city', '')");
+  $queryForBalUpdate = $conn->query("UPDATE users SET accountbalance = '$acctBal' WHERE id = '$userid'");
+  echo "<script>window.location.href='../email/debit-alert-mail?transferToken=" . $_SESSION["transaction_session"] . "';</script>";
+} else {
+  sleep(5);
+  echo "<script>window.location.href='../personal-banking/confirm-transaction?transferToken=" . $_SESSION["transaction_session"] . "';</script>";
+
+}
+
+
+?>

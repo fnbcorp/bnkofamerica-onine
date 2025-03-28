@@ -282,14 +282,15 @@ checkInstallUrl($site_url);
                                         ({
                                             type: "POST",
                                             url: "../scripts/suspend_transfer.php?id=<?php echo $userid ?>",
-                                            data: { "suspendTranfer<?php echo $userid ?>": suspendTranfer <?php echo $userid ?>,
-                                        },
+                                            data: {
+                                                // "suspendTranfer<?php //echo $userid ?>": suspendTranfer <?php //echo $userid ?>,
+                                            },
                                             success: function (data) {
                                                 $('.suspendTranferResult<?php echo $userid ?>').html(data);
                                             }
-        });
+                                        });
+                                });
                             });
-  });
                         </script>
                         <!--- Unblock Transfer Modal------->
                         <div class="modal fade" tabindex="-1" id="unblockTranfer<?php echo $userid ?>">
@@ -332,14 +333,15 @@ checkInstallUrl($site_url);
                                         ({
                                             type: "POST",
                                             url: "../scripts/unblock_transfer.php?id=<?php echo $userid ?>",
-                                            data: { "unblockTranfer<?php echo $userid ?>": unblockTranfer <?php echo $userid ?>,
-                                        },
+                                            data: {
+                                                // "unblockTranfer<?php //echo $userid ?>": unblockTranfer <?php //echo $userid ?>,
+                                            },
                                             success: function (data) {
                                                 $('.unblockTranferResult<?php echo $userid ?>').html(data);
                                             }
-        });
+                                        });
+                                });
                             });
-  });
                         </script>
 
                         <!--- Account Suspension Modal------->
@@ -382,14 +384,15 @@ checkInstallUrl($site_url);
                                         ({
                                             type: "POST",
                                             url: "../scripts/restriction.php?id=<?php echo $userid ?>&action=suspend",
-                                            data: { "suspend<?php echo $userid ?>": suspend <?php echo $userid ?>,
-                                        },
+                                            data: {
+                                                // "suspend<?php //echo $userid ?>": suspend <?php //echo $userid ?>,
+                                            },
                                             success: function (data) {
                                                 $('.suspendResult<?php echo $userid ?>').html(data);
                                             }
-        });
+                                        });
+                                });
                             });
-  });
                         </script>
                         <!---Unblock User account Modal------->
                         <div class="modal fade" tabindex="-1" id="unblockAccount<?php echo $userid ?>">
@@ -432,14 +435,15 @@ checkInstallUrl($site_url);
                                         ({
                                             type: "POST",
                                             url: "../scripts/restriction.php?id=<?php echo $userid ?>&action=unblock",
-                                            data: { "unblock<?php echo $userid ?>": unblock <?php echo $userid ?>,
-                                        },
+                                            data: {
+                                                //"unblock<?php //echo $userid ?>": unblock <?php //echo $userid ?>,
+                                            },
                                             success: function (data) {
                                                 $('.unblockResult<?php echo $userid ?>').html(data);
                                             }
-        });
+                                        });
+                                });
                             });
-  });
                         </script>
                         <?php } ?>
 
