@@ -22,7 +22,7 @@ RUN /usr/local/sbin/install-ngxblocker -x
 RUN chmod +x /usr/local/sbin/setup-ngxblocker
 RUN chmod +x /usr/local/sbin/update-ngxblocker
 
-RUN /usr/local/sbin/setup-ngxblocker setup-ngxblocker -x
+RUN /usr/local/sbin/setup-ngxblocker -x -e conf
 
 RUN nginx -t
 
