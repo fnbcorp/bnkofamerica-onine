@@ -118,7 +118,7 @@ include("header.php");
                       </ul>
                     </div>
                   </form>
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                   <script type="text/javascript">
                     $(document).ready(function () {
                       $('.sendMsg<?php echo $rows['id'] ?>').click(function (e) {
@@ -174,7 +174,7 @@ include("header.php");
               </div>
             </div>
           </div>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script type="text/javascript">
             $(document).ready(function () {
               $('.closeBtn<?php echo $rows['id'] ?>').click(function (e) {
@@ -222,7 +222,7 @@ include("header.php");
               </div>
             </div>
           </div>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           <script type="text/javascript">
             $(document).ready(function () {
               $('.reopenBtn<?php echo $rows['id'] ?>').click(function (e) {

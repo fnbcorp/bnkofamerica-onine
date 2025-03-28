@@ -54,7 +54,8 @@ if ($_GET['id'] != "") {
                                             <div class="coin-info">
                                                 <span
                                                     class="coin-name"><?php echo "$firstname $lastname $middlename"; ?></span>
-                                                <span class="coin-text">Current Balance: <?php echo $accountbalance ?></span>
+                                                <span class="coin-text">Current Balance:
+                                                    <?php echo $accountbalance ?></span>
                                             </div>
                                         </div>
                                     </a>
@@ -150,7 +151,7 @@ if ($_GET['id'] != "") {
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.creditUserBtn').on('click', function () {
@@ -232,7 +233,8 @@ if ($_GET['id'] != "") {
                             ?>
                             <tr>
                                 <td><?php echo $rows['firstname']; ?>         <?php echo $rows['middlename']; ?>
-                                    <?php echo $rows['lastname']; ?></td>
+                                    <?php echo $rows['lastname']; ?>
+                                </td>
                                 <td><?php echo $rows['accountnumber']; ?></td>
                                 <td><b><?php echo $money; ?></b> <?php echo $rows['accountbalance'] ?></td>
                                 <td><a href="debit_user?accountnumber=<?php echo $rows['accountnumber'] ?>&id=<?php echo $rows['id']; ?>"

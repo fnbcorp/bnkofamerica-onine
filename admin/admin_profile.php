@@ -84,7 +84,8 @@ while ($userdetails = mysqli_fetch_array($userquery)) {
             <input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo $firstname ?>">
           </div>
           <div class="form-control-wrap col-lg-4 p-2">
-            <input type="text" name="middlename" value=" <?php echo $middlename ?>" class="form-control" id="middlename">
+            <input type="text" name="middlename" value=" <?php echo $middlename ?>" class="form-control"
+              id="middlename">
           </div>
           <div class="form-control-wrap col-lg-4 p-2">
             <input type="text" name="lastname" value="<?php echo $lastname ?>" class="form-control" id="lastname">
@@ -135,7 +136,7 @@ while ($userdetails = mysqli_fetch_array($userquery)) {
 </div>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     $('.updateBtn').on('click', function () {

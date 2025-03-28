@@ -23,7 +23,7 @@
 <!-- app-root @e -->
 <!-- JavaScript -->
 <script src="../assets/js/ckeditor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/country.js"></script>
 <script src="../assets/js/bundle.js?ver=2.4.0"></script>
 <script src="../assets/js/scripts.js?ver=2.4.0"></script>

@@ -3,87 +3,95 @@ include("functions.php");
 include("userdata.php");
 
 if (isset($_POST)) {
- $bankname = filterString($_POST['bankname']);
- $routineNumber = filterString($_POST['sortcode']);
- $accountnumberB = filterString($_POST["accountnumber"]);
- $accountholder = filterString($_POST["accountholder"]);
- $description = filterString($_POST["description"]);
- $amount = $_SESSION['amount'];
- $errorMsg = 0;
- if (empty($bankname)) {
- $errorMsg = 1;
- echo "<script>document.getElementById('bankname').style.borderColor='red';</script>";
- }else{echo "<script>document.getElementById('bankname').style.borderColor='green';</script>";}
- if (empty($routineNumber)) {
- $errorMsg = 1;
- echo "<script>document.getElementById('sortcode').style.borderColor='red';</script>";
- }else{echo "<script>document.getElementById('sortcode').style.borderColor='green';</script>";}
- if (empty($accountholder)) {
- $errorMsg = 1;
- echo "<script>document.getElementById('accountholder').style.borderColor='red';</script>";
- }else{echo "<script>document.getElementById('accountholder').style.borderColor='green';</script>";}
- if (empty($accountnumberB)) {
- $errorMsg = 1;
- echo "<script>document.getElementById('accountnumber').style.borderColor='red';</script>";
- }
- else{echo "<script>document.getElementById('accountnumber').style.borderColor='green';</script>";}
+    $bankname = filterString($_POST['bankname']);
+    $routineNumber = filterString($_POST['sortcode']);
+    $accountnumberB = filterString($_POST["accountnumber"]);
+    $accountholder = filterString($_POST["accountholder"]);
+    $description = filterString($_POST["description"]);
+    $amount = $_SESSION['amount'];
+    $errorMsg = 0;
+    if (empty($bankname)) {
+        $errorMsg = 1;
+        echo "<script>document.getElementById('bankname').style.borderColor='red';</script>";
+    } else {
+        echo "<script>document.getElementById('bankname').style.borderColor='green';</script>";
+    }
+    if (empty($routineNumber)) {
+        $errorMsg = 1;
+        echo "<script>document.getElementById('sortcode').style.borderColor='red';</script>";
+    } else {
+        echo "<script>document.getElementById('sortcode').style.borderColor='green';</script>";
+    }
+    if (empty($accountholder)) {
+        $errorMsg = 1;
+        echo "<script>document.getElementById('accountholder').style.borderColor='red';</script>";
+    } else {
+        echo "<script>document.getElementById('accountholder').style.borderColor='green';</script>";
+    }
+    if (empty($accountnumberB)) {
+        $errorMsg = 1;
+        echo "<script>document.getElementById('accountnumber').style.borderColor='red';</script>";
+    } else {
+        echo "<script>document.getElementById('accountnumber').style.borderColor='green';</script>";
+    }
 
- if (empty($bankname) || empty($routineNumber) || empty($accountnumberB) || empty($accountholder)) {
- 	$errorMsg = 1;
- 	sleep(2.5);
- 	echo "
+    if (empty($bankname) || empty($routineNumber) || empty($accountnumberB) || empty($accountholder)) {
+        $errorMsg = 1;
+        // sleep(2.5);
+        echo "
              <script>
               toastr.error('All fields are required!', 'Empty field', {\"progressBar\": true});
              </script>
-            ";  
-            die();
- }
+            ";
+        die();
+    }
 
-   if(strlen($routineNumber) < 5 || strlen($accountnumberB) < 9){
- 	$errorMsg = 1;
-    sleep(2.5);
- 	echo "
+    if (strlen($routineNumber) < 5 || strlen($accountnumberB) < 9) {
+        $errorMsg = 1;
+        sleep(2.5);
+        echo "
              <script>
               toastr.error('Account Enquiry Failed!', 'Invalid details provided', {\"progressBar\": true});
              </script>
-            ";  
-            die();
+            ";
+        die();
 
     }
 
- if ($errorMsg == 0) {
-    if (empty($description)) {
-        $rando = randomString(5);
-        $date = randomNumber(4);        
-        $description = strtoupper("Online transfer/$rando/$date");
-        $desc = "";
-    }
-    else{
-        $desc = " <li class=\"buysell-overview-item\">
+    if ($errorMsg == 0) {
+        if (empty($description)) {
+            $rando = randomString(5);
+            $date = randomNumber(4);
+            $description = strtoupper("Online transfer/$rando/$date");
+            $desc = "";
+        } else {
+            $desc = " <li class=\"buysell-overview-item\">
                                     <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> Description </span>
-                                    <span class=\"pm-currency\">".$_POST['description']."</span>
+                                    <span class=\"pm-currency\">" . $_POST['description'] . "</span>
                                 </li>";
-    }
- 	$_SESSION['bankname'] = $bankname; $_SESSION['accountholder'] = $accountholder; $_SESSION['routineNumber'] = $routineNumber; $_SESSION['accountnumberB'] = $accountnumberB; $_SESSION['description'] = $description;
- 	/*include("connect.php");
- 	$query = $conn->query("SELECT * FROM users WHERE accountnumber = '$accountnumberB");
- 	if (mysqli_num_rows($query) > 0) {
- 		$rows = mysqli_fetch_array($query);
- 		$address = $rows["address"];
- 	}*/
- 	
-sleep(3);
-   if ($enable_cot_imf == "Yes") {
-    $link = "../personal-banking/auth?verification=imf&transferToken=".$_SESSION['transaction_session']."";
-   }
-   elseif($enable_tin_ic_tac == "Yes"){
-    $link = "../personal-banking/auth?verification=tac&transferToken=".$_SESSION['transaction_session']."";   
-   }
-   else{
-    $link="../email/otp-mail.php?transferToken=".$_SESSION['transaction_session']."";
-   }
+        }
+        $_SESSION['bankname'] = $bankname;
+        $_SESSION['accountholder'] = $accountholder;
+        $_SESSION['routineNumber'] = $routineNumber;
+        $_SESSION['accountnumberB'] = $accountnumberB;
+        $_SESSION['description'] = $description;
+        /*include("connect.php");
+           $query = $conn->query("SELECT * FROM users WHERE accountnumber = '$accountnumberB");
+           if (mysqli_num_rows($query) > 0) {
+               $rows = mysqli_fetch_array($query);
+               $address = $rows["address"];
+           }*/
 
-echo "
+        sleep(3);
+        if ($enable_cot_imf == "Yes") {
+            $link = "../personal-banking/auth?verification=imf&transferToken=" . $_SESSION['transaction_session'] . "";
+        } elseif ($enable_tin_ic_tac == "Yes") {
+            $link = "../personal-banking/auth?verification=tac&transferToken=" . $_SESSION['transaction_session'] . "";
+        } else {
+            $link = "../email/otp-mail.php?transferToken=" . $_SESSION['transaction_session'] . "";
+        }
+
+        echo "
 <script>$(\"#modalAlert\").modal(\"show\"); </script>
 <div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" id=\"modalAlert\">
         <div class=\"modal-dialog modal-dialog-centered modal-md\" role=\"document\">
@@ -101,25 +109,25 @@ echo "
                             <ul class=\"buysell-overview-list\">
                                 <li class=\"buysell-overview-item\">
                                 <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> <span>Amount</span></span>
-                                    <span class=\"pm-title\">$money ".$_SESSION['amount']."</span>
+                                    <span class=\"pm-title\">$money " . $_SESSION['amount'] . "</span>
                                 </li>
                                 <li class=\"buysell-overview-item\">
                                     <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> Bank Name</span>
-                                    <span class=\"pm-currency\">".$_SESSION['bankname']."</span>
+                                    <span class=\"pm-currency\">" . $_SESSION['bankname'] . "</span>
                                 </li>
                                 <li class=\"buysell-overview-item\">
                                     <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> $routine</span>
-                                    <span class=\"pm-currency\">".$_SESSION["routineNumber"]."</span>
+                                    <span class=\"pm-currency\">" . $_SESSION["routineNumber"] . "</span>
                                 </li>
                                 <li class=\"buysell-overview-item\">
                                     <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> Account Number</span>
-                                    <span class=\"pm-currency\">".$_SESSION['accountnumberB']."</span>
+                                    <span class=\"pm-currency\">" . $_SESSION['accountnumberB'] . "</span>
                                 </li>
                                 <li class=\"buysell-overview-item\">
                                     <span class=\"pm-title\"><em class=\"icon ni ni-alert-circle\"></em> Account Holder</span>
-                                    <span class=\"pm-currency\">".$_SESSION['accountholder']."</span>
+                                    <span class=\"pm-currency\">" . $_SESSION['accountholder'] . "</span>
                                 </li>
-                                ".$desc."
+                                " . $desc . "
                             </ul>
                         </div>
                         <div class=\"buysell-field form-group\">
@@ -134,8 +142,8 @@ echo "
                                             <em class=\"icon ni ni-wallet-out\"></em>
                                         </div>
                                         <div class=\"coin-info\">
-                                            <span class=\"coin-name\">".strtoupper($accounttype)."</span>
-                                            <span class=\"coin-text\">".substr($accountnumber, 0,4)."******</span>
+                                            <span class=\"coin-name\">" . strtoupper($accounttype) . "</span>
+                                            <span class=\"coin-text\">" . substr($accountnumber, 0, 4) . "******</span>
                                         </div>
                                     </div>
                                 </a>
@@ -161,7 +169,7 @@ echo "
     </div>
 ";
 
- echo "
+        echo "
 <script>
 $('.eg-swal-av5').on(\"click\", function (e) {
  var timerInterval;
@@ -178,7 +186,7 @@ $('.eg-swal-av5').on(\"click\", function (e) {
       },
       onClose: function onClose() {
         clearInterval(timerInterval);
-        window.location.href='".$link."';
+        window.location.href='" . $link . "';
       }
     }).then(function (result) {
       if (
@@ -191,7 +199,7 @@ $('.eg-swal-av5').on(\"click\", function (e) {
     });
     </script>
 ";
- }
+    }
 
 
 

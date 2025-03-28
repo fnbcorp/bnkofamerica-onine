@@ -253,7 +253,8 @@ checkInstallUrl($site_url);
                                     </div>
                                     <div class="modal-body">
                                         <strong>You are about to suspend
-                                            <?php echo $fullname ?> from carrying out further transfer. The next transfer
+                                            <?php echo $fullname ?> from carrying out further transfer. The next
+                                            transfer
                                             will be allowed to go through with a pending payment status, subsequent
                                             transfer after this won't go through at all.
                                         </strong>
@@ -271,7 +272,7 @@ checkInstallUrl($site_url);
                                 </div>
                             </div>
                         </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('.closeBtn<?php echo $userid ?>').click(function (e) {
@@ -303,7 +304,8 @@ checkInstallUrl($site_url);
                                     </div>
                                     <div class="modal-body">
                                         <strong>You are about to Unblock
-                                            <?php echo $fullname ?> to carry out further transfer. The next transfer will
+                                            <?php echo $fullname ?> to carry out further transfer. The next transfer
+                                            will
                                             be allowed to go through after unblocking this user.
                                         </strong>
                                     </div>
@@ -320,7 +322,7 @@ checkInstallUrl($site_url);
                                 </div>
                             </div>
                         </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('.unblockTranferBtn<?php echo $userid ?>').click(function (e) {
@@ -370,7 +372,7 @@ checkInstallUrl($site_url);
                                 </div>
                             </div>
                         </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('.suspendBtn<?php echo $userid ?>').click(function (e) {
@@ -420,7 +422,7 @@ checkInstallUrl($site_url);
                                 </div>
                             </div>
                         </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('.unblockBtn<?php echo $userid ?>').click(function (e) {

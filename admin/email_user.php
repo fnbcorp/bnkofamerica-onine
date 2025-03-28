@@ -48,8 +48,8 @@ include("header.php");
               ?>
             </datalist>
           <?php } else { ?>
-            <input readonly="" value="<?php echo $_GET['email'] ?>" type="text" class="form-control form-control" id="email"
-              name="email">
+            <input readonly="" value="<?php echo $_GET['email'] ?>" type="text" class="form-control form-control"
+              id="email" name="email">
           <?php } ?>
           <div class="form-dropdown">
             <div class="text">Account<span></span></div>
@@ -75,7 +75,7 @@ include("header.php");
 </div>
 </div>
 <script src="../assets/js/nicEdit.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     "use strict";

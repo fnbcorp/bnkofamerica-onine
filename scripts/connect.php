@@ -1,9 +1,6 @@
 <?php
 // !isset($_ENV["PHP_ENV"])
 // if () {
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 // }
 // $servername = "131.153.148.82";
 // $username = "arrivelo_fnbcorp";
@@ -20,6 +17,9 @@ if (isset($_ENV["PHP_ENV"])) {
 }
 // DEV
 if (!isset($_ENV["PHP_ENV"])) {
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
   $servername = "localhost";
   $username = "davidb";
   $dbname = "fnbcorp";

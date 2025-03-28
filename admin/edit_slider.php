@@ -131,7 +131,7 @@ while ($rows = mysqli_fetch_array($query)) {
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function (e) {
             $("#updateForm").on('submit', (function (e) {

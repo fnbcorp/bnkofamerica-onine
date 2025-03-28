@@ -107,7 +107,8 @@ require_once('header.php');
                                 </div>
                                 <div class="modal-body">
                                     <strong>You are about to Disable
-                                        <?php echo $r['crypto_name'] ?>, Users won't be able to deposit Crypto Using this
+                                        <?php echo $r['crypto_name'] ?>, Users won't be able to deposit Crypto Using
+                                        this
                                         Wallet henceforth!
                                     </strong>
                                 </div>
@@ -124,7 +125,7 @@ require_once('header.php');
                             </div>
                         </div>
                     </div>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                     <script type="text/javascript">
                         $(document).ready(function () {
                             $('.closeBtn<?php echo $coinid ?>').click(function (e) {
@@ -173,7 +174,7 @@ require_once('header.php');
                             </div>
                         </div>
                     </div>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                     <script type="text/javascript">
                         $(document).ready(function () {
                             $('.closeBtnB<?php echo $coinid ?>').click(function (e) {
@@ -232,7 +233,7 @@ require_once('header.php');
                         </div>
                     </div>
                 </div>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('.UpdateBtn<?php echo $coinid ?>').click(function (e) {
@@ -323,7 +324,8 @@ require_once('header.php');
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
                                                 <li class="nk-tb-action-hidden">
-                                                    <a href="#" class="btn btn-trigger btn-icon" <?php echo "data-toggle='modal' data-target='#approve" . $id . "'"; ?> data-placement="top" title="Approve">
+                                                    <a href="#" class="btn btn-trigger btn-icon" <?php echo "data-toggle='modal' data-target='#approve" . $id . "'"; ?> data-placement="top"
+                                                        title="Approve">
                                                         <em class="icon ni ni-wallet-fill text-success"></em>
                                                     </a>
                                                 </li>
@@ -371,7 +373,7 @@ require_once('header.php');
                                 </div>
                             </div>
                 </div>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('.approveBtn<?php echo $id ?>').click(function (e) {
@@ -422,7 +424,7 @@ require_once('header.php');
                     </div>
                 </div>
             </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('.rejectBtn<?php echo $id ?>').click(function (e) {
@@ -626,7 +628,7 @@ require_once('header.php');
                         </div>
                     </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.approveBtn<?php echo $id ?>').click(function (e) {
@@ -769,7 +771,7 @@ require_once('header.php');
                     </div>
                 </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.approveBtn<?php echo $id ?>').click(function (e) {
@@ -810,7 +812,8 @@ require_once('header.php');
                 <form action="" method="post">
                     <div class="reject_result<?php echo $id ?>"></div>
                     <div class="modal-footer">
-                        <input type="hidden" name="f<?php echo $id ?>" value="<?php echo $id ?>" id="f<?php echo $id ?>">
+                        <input type="hidden" name="f<?php echo $id ?>" value="<?php echo $id ?>"
+                            id="f<?php echo $id ?>">
                         <button type="submit" class="btn btn-primary btn-sm rejectBtn<?php echo $id ?>">Reject</button>
                         <button class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
                 </form>
@@ -818,7 +821,7 @@ require_once('header.php');
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.rejectBtn<?php echo $id ?>').click(function (e) {

@@ -73,7 +73,8 @@ while ($rows = mysqli_fetch_assoc($query)) {
         <div class="col-md-4">
           <div class="form-group">
             <label class="form-label" for="email">Date</label>
-            <input type="text" class="form-control form-control-lg" name="dated" id="dated" value="<?php echo $dated ?>">
+            <input type="text" class="form-control form-control-lg" name="dated" id="dated"
+              value="<?php echo $dated ?>">
           </div>
         </div>
         <div class="col-md-12">
@@ -86,7 +87,8 @@ while ($rows = mysqli_fetch_assoc($query)) {
         <div class="col-md-4">
           <div class="form-group">
             <label class="form-label" for="email">Scope</label>
-            <input type="text" class="form-control form-control-lg" name="scope" id="scope" value="<?php echo $scope ?>">
+            <input type="text" class="form-control form-control-lg" name="scope" id="scope"
+              value="<?php echo $scope ?>">
           </div>
         </div>
         <div class="col-md-4">
@@ -122,7 +124,7 @@ while ($rows = mysqli_fetch_assoc($query)) {
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
     $('.UpdateTransfer').on('click', function () {
