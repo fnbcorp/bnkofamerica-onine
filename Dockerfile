@@ -1,7 +1,5 @@
 FROM richarvey/nginx-php-fpm:latest
 
-COPY . .
-
 # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html
@@ -15,6 +13,14 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN sed -i 's#try_files $uri $uri/ =404;#try_files $uri $uri/ $uri.html /$uri.php?$args;#g' /etc/nginx/sites-available/default.conf
 
+RUN sed -i 's#root /var/www/html;#root /var/www;#g' /etc/nginx/sites-available/default.conf
+
+
+WORKDIR "/var/www"
+
+COPY . .
+
+
 RUN wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O /usr/local/sbin/install-ngxblocker
 
 RUN chmod +x /usr/local/sbin/install-ngxblocker
@@ -23,6 +29,9 @@ RUN chmod +x /usr/local/sbin/setup-ngxblocker
 RUN chmod +x /usr/local/sbin/update-ngxblocker
 
 RUN /usr/local/sbin/setup-ngxblocker -x -e conf
+
+COPY ./bots.d/blacklist-user-agents.conf /etc/nginx/bots.d/blacklist-user-agents.conf
+COPY ./bots.d/blacklist-ips.conf /etc/nginx/bots.d/blacklist-ips.conf
 
 RUN nginx -t
 
