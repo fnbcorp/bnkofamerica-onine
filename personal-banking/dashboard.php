@@ -69,7 +69,9 @@
                                                                 </div>
                                                                 <div class="nk-wg7-stats w-50"> 
                                                                     <div class="nk-wg7-title">Your IP address</div>
-                                                                    <div class="number"><?php getFlag(); ?> <? echo $_SERVER['REMOTE_ADDR']; ?></div>
+                                                                    <div 
+                                                                    class="number" id="flag-logo">
+                                                                </div>
                                                                 </div>
                                                             </div>
                                                         </div><!-- .nk-wg7 -->
@@ -307,7 +309,7 @@
             </div>
         </div>
     </div>
-                                        <?php } ?>
+                                    <?php } ?>
                                           
                                         </div><!-- .tranx-list -->
                                     </div><!-- .col -->

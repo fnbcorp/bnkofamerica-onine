@@ -6,6 +6,7 @@ ENV WEBROOT /var/www/html
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 0
 ENV REAL_IP_HEADER 1
+ENV PHP_ENV 1
 
 
 # Allow composer to run as root

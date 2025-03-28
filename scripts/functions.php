@@ -558,18 +558,19 @@ function getFlag()
     $ip = $_SERVER['REMOTE_ADDR'];
     // Use JSON encoded string and converts 
     // it into a PHP variable 
-    $url = "http://www.geoplugin.net/json.gp?ip=$ip";
-    $content = @file_get_contents($url);
-    if ($content === FALSE) {
-        echo "127.1.1.0";
-    } else {
-        $ipdat = @json_decode(file_get_contents(
-            "http://www.geoplugin.net/json.gp?ip=" . $ip
-        ));
-        $ca = $ipdat->geoplugin_countryCode;
-        $ca = strtolower($ca);
-        echo '<img src="https://flagcdn.com/24x18/' . $ca . '.png">';
-    }
+    // $url = "http://www.geoplugin.net/json.gp";
+    // $content = @file_get_contents($url);
+    // if ($content === FALSE) {
+    //     echo "127.1.1.0";
+    // } else {
+    $ipdat = @json_decode(file_get_contents(
+        "http://www.geoplugin.net/json.gp"
+    ));
+    $ca = $ipdat->geoplugin_countryCode;
+    $ca = strtolower($ca);
+    echo $ip;
+    // echo '<img src="https://flagcdn.com/24x18/' . $ca . '.png">';
+    // }
 
 }
 function randomNumber($length = 25)

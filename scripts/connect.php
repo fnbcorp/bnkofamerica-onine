@@ -12,16 +12,19 @@ error_reporting(E_ALL);
 
 
 // PROD
-// $servername = "b4j2h3z2ug93gzgsiof2-mysql.services.clever-cloud.com";
-// $username = "umqxqvcvjyxbyisb";
-// $dbname = "b4j2h3z2ug93gzgsiof2";
-// $password = "NAuganoaeaNLwwqpIGpZ";
-
+if (isset($_ENV["PHP_ENV"])) {
+  $servername = "b4j2h3z2ug93gzgsiof2-mysql.services.clever-cloud.com";
+  $username = "umqxqvcvjyxbyisb";
+  $dbname = "b4j2h3z2ug93gzgsiof2";
+  $password = "NAuganoaeaNLwwqpIGpZ";
+}
 // DEV
-$servername = "localhost";
-$username = "davidb";
-$dbname = "fnbcorp";
-$password = "00154abs";
+if (!isset($_ENV["PHP_ENV"])) {
+  $servername = "localhost";
+  $username = "davidb";
+  $dbname = "fnbcorp";
+  $password = "00154abs";
+}
 
 
 // Create connection
