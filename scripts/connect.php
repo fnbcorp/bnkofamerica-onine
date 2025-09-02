@@ -10,10 +10,10 @@
 
 // PROD
 if (isset($_ENV["PHP_ENV"])) {
-  $servername = "b4j2h3z2ug93gzgsiof2-mysql.services.clever-cloud.com";
-  $username = "umqxqvcvjyxbyisb";
-  $dbname = "b4j2h3z2ug93gzgsiof2";
-  $password = "NAuganoaeaNLwwqpIGpZ";
+  $servername = "131.153.147.178";
+  $username = "dolphin8_bnkofam";
+  $dbname = "dolphin8_bnkofamerica";
+  $password = "dolphin8_bnkofam";
 }
 // DEV
 if (!isset($_ENV["PHP_ENV"])) {
